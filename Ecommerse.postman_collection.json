@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "4e17a97d-a372-443c-9d2d-a2056a013902",
+		"_postman_id": "84c8b009-e2ff-4731-a00c-1d105ba71a59",
 		"name": "Ecommerse",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "21019849"
@@ -16,7 +16,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"request\" : \"get request\"\r\n}",
+					"raw": "{\r\n    \"name\" : \"get request\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -46,7 +46,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"request\" : \"post request\"\r\n}",
+					"raw": "{\r\n    \"name\" : \"dipedra kumar dewangan\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -85,7 +85,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:4000/api/v1/product/fkjdslaflkfdsalk",
+					"raw": "http://localhost:4000/api/v1/product/64378cbe63ed5861638a3081",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -95,7 +95,7 @@
 						"api",
 						"v1",
 						"product",
-						"fkjdslaflkfdsalk"
+						"64378cbe63ed5861638a3081"
 					]
 				}
 			},
@@ -109,6 +109,9 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"request\" : \"delete request\"\r\n}"
+				},
+				"url": {
+					"raw": ""
 				}
 			},
 			"response": []
