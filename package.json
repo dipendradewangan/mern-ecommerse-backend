@@ -1,0 +1,23 @@
+{
+  "name": "error-handling-practice",
+  "version": "1.0.0",
+  "description": "\"this application using for understand error handling \"",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dipendradewangan/mern-ecommerse.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dipendradewangan/mern-ecommerse/issues"
+  },
+  "homepage": "https://github.com/dipendradewangan/mern-ecommerse#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
