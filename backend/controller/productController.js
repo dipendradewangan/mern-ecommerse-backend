@@ -10,7 +10,6 @@ const getAllProducts = catchAsyncError(async (req, res) => {
     const apiFeacher = new ApiFeachers(ProductSchema.find(), req.query).search();
     const productCollection = await apiFeacher.query;
 
-    // const productCollection = await ProductSchema.find()
     res.status(200).json({
         success: true,
         message: "Data Found!",

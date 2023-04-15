@@ -2,9 +2,10 @@ class ApiFeachers {
     constructor(query, queryStr) {
         this.query = query;
         this.queryStr = queryStr
-        // console.log(this.query, this.queryStr)
     }
 
+
+    // search all products according to name category and brandName as a given keyword
     search() {
         const keyword = this.queryStr.keyword ? {
             // or option used for one keyword enable all types of search
@@ -29,7 +30,6 @@ class ApiFeachers {
                 }
             ]
         } : {}
-        console.log(keyword)
     
         this.query =  this.query.find({...keyword});
         return this;
