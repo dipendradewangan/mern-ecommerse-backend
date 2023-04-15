@@ -1,7 +1,6 @@
 
 const ProductSchema = require("../model/productModel");
-const ErrorHandler = require("../utils/errorHandler");
-
+const ErrorHandler = require("../utils/ErrorHandler");
 
 // controlles for fetch all product
 const getAllProducts = async (req, res) => {
@@ -24,8 +23,8 @@ const getProductDetails = async (req, res, next) => {
     }
 
     res.status(200).json({
-        success : true,
-        data : product
+        success: true,
+        data: product
     })
 }
 
@@ -57,11 +56,7 @@ const updateProduct = async (req, res) => {
     const product = await ProductSchema.findById(id)
 
     if (!product) {
-
-        res.status(404).json({
-            success: false,
-            message: "product not found",
-        })
+        return next(new ErrorHandler("Product not found", 404))
     }
 
     const updatedProduct = await ProductSchema.findByIdAndUpdate(id, req.body)
@@ -78,11 +73,7 @@ const deleteProduct = async (req, res) => {
     const product = await ProductSchema.findById(id)
 
     if (!product) {
-
-        res.status(404).json({
-            success: false,
-            message: "product not found",
-        })
+        return next(new ErrorHandler("Product not found", 404))
     }
 
     const deletedProduct = await ProductSchema.findByIdAndDelete(id, req.body)
