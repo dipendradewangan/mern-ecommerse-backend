@@ -1,16 +1,20 @@
 
 const ProductSchema = require("../model/productModel");
 const ErrorHandler = require("../utils/ErrorHandler");
+const ApiFeachers = require("../utils/apifeachers");
 const catchAsyncError = require("./catchAsyncError");
 
 // controlles for fetch all product
 const getAllProducts = catchAsyncError(async (req, res) => {
 
-    const productCollection = await ProductSchema.find()
+    const apiFeacher = new ApiFeachers(ProductSchema.find(), req.query).search();
+    const productCollection = await apiFeacher.query;
+
+    // const productCollection = await ProductSchema.find()
     res.status(200).json({
         success: true,
         message: "Data Found!",
-        data: productCollection
+        productCollection
     })
 })
 
