@@ -1,21 +1,15 @@
 const express = require("express");
+const userRoutes = require("./routes/userRoutes");
+const errorMiddleware = require("./middleware/error");
+const connectDb = require("./config/database");
 const app = express();
+connectDb();
 
-
-
-
-app.get("/", (req, res, next) => {
-    next(new Error("this is custom error"))
-})
-
-
-app.use((err, req, res, next) => {
-    res.status(400).json({
-        message: err.message
-    })
-})
+app.use("/errorHandling", userRoutes)
 
 
 app.listen(4000, () => {
     console.log(`Server is listening`);
 })
+
+app.use(errorMiddleware)
