@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const productSchema = new mongoose.Schema({
-     name : {
+    name : {
         type : String,
         required : [true, "Please enter the product name"],
         trim : true

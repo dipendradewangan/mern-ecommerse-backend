@@ -1,19 +1,36 @@
-const server = require("./app");
+const app = require("./app");
 const dotenv = require("dotenv");
-const mongoose = require("mongoose");
-
-// env file configuration
-dotenv.config({path : "backend/config/config.env"});
+const connectDb = require("./config/database")
 
 
-// connect to the database
-mongoose.connect(process.env.DB_URL).then((data)=>{
-    console.log("Database successfully connected with the server")
-}).catch((err)=>{
-    console.log(err)
+
+// Handling uncought exception
+process.on("uncaughtException", (err) => {
+    console.log(`Error : ${err.message}`);
+    console.log("Shutting down the server due to uncought exception");
+
+    process.exit(1);
+    
 })
 
 
-server.listen(process.env.PORT, (req, res)=>{
+// env file configuration
+dotenv.config({ path: "backend/config/config.env" });
+
+connectDb();
+
+
+const server = app.listen(process.env.PORT, (req, res) => {
     console.log(`server is listening on http://localhost:${process.env.PORT}`)
+})
+
+
+// unhandled promise rejection
+process.on("unhandledRejection", (err) => {
+    console.log(`Error : ${err.message}`);
+    console.log("Shutting down the server due to unhandled promise rejection");
+
+    server.close(() => {
+        process.exit(1);
+    });
 })

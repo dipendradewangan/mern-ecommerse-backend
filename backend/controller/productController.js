@@ -1,9 +1,10 @@
 
 const ProductSchema = require("../model/productModel");
 const ErrorHandler = require("../utils/ErrorHandler");
+const catchAsyncError = require("./catchAsyncError");
 
 // controlles for fetch all product
-const getAllProducts = async (req, res) => {
+const getAllProducts = catchAsyncError(async (req, res) => {
 
     const productCollection = await ProductSchema.find()
     res.status(200).json({
@@ -11,10 +12,10 @@ const getAllProducts = async (req, res) => {
         message: "Data Found!",
         data: productCollection
     })
-}
+})
 
 // get product details
-const getProductDetails = async (req, res, next) => {
+const getProductDetails = catchAsyncError(async (req, res, next) => {
     const id = req.params.id;
     const product = await ProductSchema.findById(id);
 
@@ -26,32 +27,22 @@ const getProductDetails = async (req, res, next) => {
         success: true,
         data: product
     })
-}
+})
 
 
 
 // controlles for fetch create a product
-const createProduct = async (req, res) => {
-    const collection = new ProductSchema(req.body);
-    try {
-        const product = await collection.save();
-        res.status(201).json({
-            success: true,
-            message: "Product created!",
-            data: product
-        })
+const createProduct = catchAsyncError(async (req, res, next) => {
+    const product = await ProductSchema.create(req.body)
+    res.status(201).json({
+        success : true,
+        message : "Product successfully created!"
+    })
 
-    }
-    catch (err) {
-        res.status(500).json({
-            success: false,
-            message: err
-        })
-    }
-}
+})
 
 // controlles for fetch update a selected product
-const updateProduct = async (req, res) => {
+const updateProduct =catchAsyncError( async (req, res) => {
     const id = req.params.id;
     const product = await ProductSchema.findById(id)
 
@@ -66,9 +57,9 @@ const updateProduct = async (req, res) => {
         data: updatedProduct
     })
 
-}
+})
 
-const deleteProduct = async (req, res) => {
+const deleteProduct = catchAsyncError(async (req, res) => {
     const id = req.params.id;
     const product = await ProductSchema.findById(id)
 
@@ -83,7 +74,7 @@ const deleteProduct = async (req, res) => {
         data: deletedProduct
     })
 
-}
+})
 
 module.exports = {
     getAllProducts,
