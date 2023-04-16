@@ -36,6 +36,27 @@ class ApiFeachers {
     }
 
 
+    // filter products as categery
+
+    filter(){
+        const queryCopy = {...this.queryStr}
+
+        // removing some fields for category
+        
+        const removeFileds = ["keyword","page", "limit"];
+        removeFileds.forEach(key=>{
+            delete queryCopy[key]
+        })
+
+        // filter price and rating
+
+        let queryStr = JSON.stringify(queryCopy);
+        queryStr = queryStr.replace(/\b(lt|gt|gte|lte)\b/g, (key)=>`$${key}`)
+        this.query = this.query.find(JSON.parse(queryStr))
+        return this;
+    }
+
+
 }
 
 
