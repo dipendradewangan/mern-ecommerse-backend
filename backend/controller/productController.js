@@ -7,7 +7,8 @@ const catchAsyncError = require("./catchAsyncError");
 // controlles for fetch all product
 const getAllProducts = catchAsyncError(async (req, res) => {
 
-    const apiFeacher = new ApiFeachers(ProductSchema.find(), req.query).search().filter();
+    const resultPerPage = 5
+    const apiFeacher = new ApiFeachers(ProductSchema.find(), req.query).search().filter().pagination(resultPerPage);
     const productCollection = await apiFeacher.query;
 
     res.status(200).json({
