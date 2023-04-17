@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken")
 
 
 const userSchema = new mongoose.Schema({
@@ -49,9 +50,19 @@ const userSchema = new mongoose.Schema({
     }
 })
 
-userSchema.pre("save", async function(){
-    let givenPassword = this.password;
-    this.password = await bcrypt.hashSync(givenPassword, 10);
+
+userSchema.pre("save", async function (next) {
+    if (!this.isModified("password")) {
+        next()
+    }
+    this.password = await bcrypt.hashSync(this.password, 10);
 })
+
+
+userSchema.methods.normalize = function() {
+    console.log(this.name,this.email, this.password); 
+};
+
+
 
 module.exports = mongoose.model("User", userSchema)
