@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "d2314a30-fd14-47f1-bdbe-c76d55a0435f",
+		"_postman_id": "7f0ae5f5-0beb-4bef-a160-724f35320ed1",
 		"name": "Ecommerse",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -163,7 +163,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"dippu\",\r\n    \"email\" : \"dippu\",\r\n    \"password\" : \"dippudewanga\"\r\n}",
+							"raw": "{\r\n    \"name\" : \"toran\",\r\n    \"email\" : \"dippu@gmail.com\",\r\n    \"password\" : \"dippudewanga\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -181,6 +181,57 @@
 								"api",
 								"v1",
 								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"d@gmail.com\",\r\n    \"password\" : \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"logout"
 							]
 						}
 					},

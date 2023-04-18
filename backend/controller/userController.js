@@ -44,7 +44,27 @@ const loginUser = catchAsyncError(async (req, res, next) => {
     sendToken(user, 200, res)
 })
 
+
+// logut route
+
+const logoutUser = catchAsyncError((req, res, next)=>{
+    
+
+    res.cookie("token", null, {
+        expires : new Date(Date.now()),
+        httpOnly : true
+
+    })
+
+    
+    res.status(200).json({
+        success : true,
+        message : "Loged out!"
+    })
+})
+
 module.exports = {
     registerUser,
-    loginUser
+    loginUser,
+    logoutUser
 }
