@@ -17,12 +17,13 @@ const registerUser = catchAsyncError(async (req, res, next)=>{
             url : "profileUrl"
         }
     });
-    user.normalize();
+    const token = user.getUserToken();
+    console.log(token)
 
     res.status(201).json({
         success : true,
         message : "user successully created",
-        user
+        token
     })
 })
 

@@ -50,7 +50,7 @@ const userSchema = new mongoose.Schema({
     }
 })
 
-
+// make password encrypt
 userSchema.pre("save", async function (next) {
     if (!this.isModified("password")) {
         next()
@@ -59,8 +59,11 @@ userSchema.pre("save", async function (next) {
 })
 
 
-userSchema.methods.normalize = function() {
-    console.log(this.name,this.email, this.password); 
+// create token 
+userSchema.methods.getUserToken = function() {
+    return jwt.sign({id : this._id}, process.env.JWT_SECRET,{
+        expiresIn : process.env.JWT_EXPIRE
+    })
 };
 
 
