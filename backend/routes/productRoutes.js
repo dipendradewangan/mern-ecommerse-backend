@@ -1,9 +1,10 @@
 const router = require("express").Router();
 const { getAllProducts, updateProduct, createProduct, deleteProduct, getProductDetails } = require("../controller/productController");
+const isAuthenticateUser = require("../middleware/auth");
 
 
 // route for get all products
-router.get("/products", getAllProducts)
+router.get("/products", isAuthenticateUser, getAllProducts)
 
 // route for get any product Details using product id
 router.get("/product/:id", getProductDetails)
