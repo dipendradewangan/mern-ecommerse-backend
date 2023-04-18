@@ -1,7 +1,7 @@
 const catchAsyncError = require("./catchAsyncError");
 const userSchema = require("../model/userModel");
 const ErrorHandler = require("../utils/errorHandler");
-// const { response } = require("express");
+const sendToken = require("../utils/getToken");
 
 
 
@@ -17,14 +17,8 @@ const registerUser = catchAsyncError(async (req, res, next) => {
             url: "profileUrl"
         }
     });
-    const token = user.getUserToken();
-    console.log(token)
-
-    res.status(201).json({
-        success: true,
-        message: "user successully created",
-        token
-    })
+    
+    sendToken(user, 201,res)
 })
 
 
@@ -47,12 +41,7 @@ const loginUser = catchAsyncError(async (req, res, next) => {
         return next(new ErrorHandler("Invalid email or password", 401));
     }
 
-    const token = user.getUserToken();
-
-    res.status(200).json({
-        success : true,
-        token
-    })
+    sendToken(user, 200, res)
 })
 
 module.exports = {
