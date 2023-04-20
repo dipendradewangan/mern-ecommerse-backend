@@ -44,7 +44,14 @@ const getProductDetails = catchAsyncError(async (req, res, next) => {
 
 // controlles for fetch create a product
 const createProduct = catchAsyncError(async (req, res, next) => {
+    
+
+    // insert details of product creater using logged user 
+    req.body.createdBy = req.user._id
+
     const product = await ProductSchema.create(req.body)
+
+
     res.status(201).json({
         success : true,
         message : "Product successfully created!"
@@ -60,6 +67,9 @@ const updateProduct =catchAsyncError( async (req, res) => {
     if (!product) {
         return next(new ErrorHandler("Product not found", 404))
     }
+    // insert name and time into the updatedBy using logged user name
+    req.body.updatedAt = Date.now();
+    req.body.updatedBy = req.user._id
 
     const updatedProduct = await ProductSchema.findByIdAndUpdate(id, req.body)
     res.status(200).json({
