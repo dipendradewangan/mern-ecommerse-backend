@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "7f0ae5f5-0beb-4bef-a160-724f35320ed1",
+		"_postman_id": "7d0d541d-dabd-4fdd-987f-4f79f629df6d",
 		"name": "Ecommerse",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -26,7 +26,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/api/v1/products",
+							"raw": "http://localhost:4000/api/v1/products?page=2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -36,6 +36,12 @@
 								"api",
 								"v1",
 								"products"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								}
 							]
 						}
 					},
@@ -70,7 +76,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"dipendra\"\r\n   \r\n\r\n}",
+							"raw": "{\r\n            \"name\": \"name\",\r\n            \"brandName\": \"name\",\r\n            \"description\": \"this is the phone produced by product 8\",\r\n            \"price\": 10000,\r\n            \"rating\": 0,\r\n            \"image\": [\r\n                {\r\n                    \"public_id\": \"sample public id\",\r\n                    \"url\": \"image.url.com\"\r\n    \r\n                }\r\n            ],\r\n            \"category\": \"mobile\",\r\n            \"stock\": 1\r\n            \r\n        }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -101,7 +107,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"lenovo thinkpad\",\r\n    \"brandName\" : \"lenovo\",\r\n    \"category\" : \"laptop\"\r\n}",
+							"raw": "{\r\n    \"name\" : \"ch-3\"\r\n    \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -109,7 +115,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/api/v1/product/6438017f5ab008923bca473b",
+							"raw": "http://localhost:4000/api/v1/product/6438011d5ab008923bca4714",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -119,7 +125,7 @@
 								"api",
 								"v1",
 								"product",
-								"6438017f5ab008923bca473b"
+								"6438011d5ab008923bca4714"
 							]
 						}
 					},
@@ -232,6 +238,37 @@
 								"api",
 								"v1",
 								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forget password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"dipendra@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/password/forgot",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"password",
+								"forgot"
 							]
 						}
 					},

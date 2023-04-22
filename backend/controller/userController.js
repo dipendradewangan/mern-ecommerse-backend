@@ -17,8 +17,8 @@ const registerUser = catchAsyncError(async (req, res, next) => {
             url: "profileUrl"
         }
     });
-    
-    sendToken(user, 201,res)
+
+    sendToken(user, 201, res)
 })
 
 
@@ -32,12 +32,12 @@ const loginUser = catchAsyncError(async (req, res, next) => {
 
     const user = await userSchema.findOne({ email }).select("+password");
 
-    if(!user){
+    if (!user) {
         return next(new ErrorHandler("Invalid email or password", 401));
     }
 
     const isMatchedPassword = await user.comparePassword(password);
-    if(!isMatchedPassword){
+    if (!isMatchedPassword) {
         return next(new ErrorHandler("Invalid email or password", 401));
     }
 
@@ -46,25 +46,47 @@ const loginUser = catchAsyncError(async (req, res, next) => {
 
 
 // logut route
+const logoutUser = catchAsyncError((req, res, next) => {
 
-const logoutUser = catchAsyncError((req, res, next)=>{
-    
 
     res.cookie("token", null, {
-        expires : new Date(Date.now()),
-        httpOnly : true
+        expires: new Date(Date.now()),
+        httpOnly: true
 
     })
 
-    
+
     res.status(200).json({
-        success : true,
-        message : "Loged out!"
+        success: true,
+        message: "Loged out!"
     })
 })
+
+
+// forget password coding start
+
+const forgotPassword = async (req, res, next) => {
+
+    const { email } = req.body;
+    console.log(email)
+
+    const user = await userSchema.findOne({ email });
+
+    if (!user) {
+        return next(new ErrorHandler("User not found", 404));
+    }
+
+    const token = user.getResetPasswordToken();
+
+    const userRes = await user.save({ validateBeforeSave: false })
+    
+    console.log(userRes)
+
+}
 
 module.exports = {
     registerUser,
     loginUser,
-    logoutUser
+    logoutUser,
+    forgotPassword
 }
