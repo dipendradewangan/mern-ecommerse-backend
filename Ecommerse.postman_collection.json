@@ -250,7 +250,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\" : \"dipendra@gmail.com\"\r\n}",
+							"raw": "{\r\n    \"email\" : \"dipenda@gmail.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -269,6 +269,29 @@
 								"v1",
 								"password",
 								"forgot"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reset password with token",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/password/reset/e7fa287b2fca6ea0caf33f0e3d92d27c1f9062ba",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"password",
+								"reset",
+								"e7fa287b2fca6ea0caf33f0e3d92d27c1f9062ba"
 							]
 						}
 					},

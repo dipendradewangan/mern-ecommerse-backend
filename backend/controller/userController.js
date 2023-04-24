@@ -2,6 +2,7 @@ const catchAsyncError = require("./catchAsyncError");
 const userSchema = require("../model/userModel");
 const ErrorHandler = require("../utils/errorHandler");
 const sendToken = require("../utils/getToken");
+const crypto = require("crypto");
 
 
 
@@ -65,28 +66,47 @@ const logoutUser = catchAsyncError((req, res, next) => {
 
 // forget password coding start
 
-const forgotPassword = async (req, res, next) => {
-
+const forgotPassword = catchAsyncError(async (req, res, next) => {
     const { email } = req.body;
-    console.log(email)
-
     const user = await userSchema.findOne({ email });
-
     if (!user) {
-        return next(new ErrorHandler("User not found", 404));
+        return next(new ErrorHandler("User not found!", 404));
     }
+    const resetToken = await user.getPasswordResetToken(user);
+    console.log(resetToken)
+    await user.save({ validateBeforeSave: false })
 
-    const token = user.getResetPasswordToken();
+    const resetPasswordUrl = `${req.protocol}://${req.get("host")}/api/v1/password/reset/${resetToken}`
+    console.log(req.get("host"));
+    console.log(req.protocol)
+    console.log(resetPasswordUrl);
 
-    const userRes = await user.save({ validateBeforeSave: false })
+})
+
+
+// reset password using token
+
+const resetPassword = catchAsyncError(async(req, res, next) => {
+    const token = req.params.token;
+    const {password, confirmPassword} = req.body;
+    const resetPasswordToken = crypto.createHash("sha256").update(token).digest("hex");
+
+    const user = await userSchema.findOne({
+        resetPasswordToken,
+        resetPasswordExpire : {$gte : Date.now()}
+    })
+    console.log(user)
+
+    if(!user){
+        return next(new ErrorHandler("Ivalid token or has been expired"))
+    }
     
-    console.log(userRes)
-
-}
+})
 
 module.exports = {
     registerUser,
     loginUser,
     logoutUser,
-    forgotPassword
+    forgotPassword,
+    resetPassword
 }
