@@ -77,9 +77,9 @@ const forgotPassword = catchAsyncError(async (req, res, next) => {
     await user.save({ validateBeforeSave: false })
 
     const resetPasswordUrl = `${req.protocol}://${req.get("host")}/api/v1/password/reset/${resetToken}`
-    console.log(req.get("host"));
-    console.log(req.protocol)
+
     console.log(resetPasswordUrl);
+    
 
 })
 
@@ -95,11 +95,21 @@ const resetPassword = catchAsyncError(async(req, res, next) => {
         resetPasswordToken,
         resetPasswordExpire : {$gte : Date.now()}
     })
-    console.log(user)
+    
 
     if(!user){
         return next(new ErrorHandler("Ivalid token or has been expired"))
     }
+
+    if(password !== confirmPassword){
+        return next(new ErrorHandler("Entered password not matched!", 400));
+    }
+
+    user.password = password;
+    user.updatedAt = Date.now();
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpire = undefined;
+    await user.save({validateBeforeSave: false})
     
 })
 
