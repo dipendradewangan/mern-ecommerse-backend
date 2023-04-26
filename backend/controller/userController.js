@@ -2,6 +2,7 @@ const catchAsyncError = require("./catchAsyncError");
 const userSchema = require("../model/userModel");
 const ErrorHandler = require("../utils/errorHandler");
 const sendToken = require("../utils/getToken");
+const sendEmail = require("../utils/sendEmail")
 const crypto = require("crypto");
 
 
@@ -69,48 +70,80 @@ const logoutUser = catchAsyncError((req, res, next) => {
 const forgotPassword = catchAsyncError(async (req, res, next) => {
     const { email } = req.body;
     const user = await userSchema.findOne({ email });
+
+    // check user available or not
     if (!user) {
         return next(new ErrorHandler("User not found!", 404));
     }
+
+    // external function
     const resetToken = await user.getPasswordResetToken(user);
-    console.log(resetToken)
+
     await user.save({ validateBeforeSave: false })
 
     const resetPasswordUrl = `${req.protocol}://${req.get("host")}/api/v1/password/reset/${resetToken}`
 
-    console.log(resetPasswordUrl);
-    
+    const message = `Your Ecommerse password recovery token is :- \n\n${resetPasswordUrl}\n\nIf you are not requested this email then, ignore it.`
+
+    try {
+        sendEmail({
+            email: user.email,
+            subject: `Ecommerse password recovery!`,
+            message
+        })
+
+        res.status(200).json({
+            success: true,
+            message: `Password Recovery email sent to ${user.email}`
+        })
+    }
+    catch (error) {
+        user.resetPasswordToken = undefined;
+        user.resetPasswordExpire = undefined;
+        await user.save({ validateBeforeSave: false })
+        return next(new ErrorHandler(error.message, 500))
+    }
 
 })
 
 
 // reset password using token
 
-const resetPassword = catchAsyncError(async(req, res, next) => {
+const resetPassword = catchAsyncError(async (req, res, next) => {
     const token = req.params.token;
-    const {password, confirmPassword} = req.body;
+    const { password, confirmPassword } = req.body;
     const resetPasswordToken = crypto.createHash("sha256").update(token).digest("hex");
 
     const user = await userSchema.findOne({
         resetPasswordToken,
-        resetPasswordExpire : {$gte : Date.now()}
+        resetPasswordExpire: { $gte: Date.now() }
     })
-    
 
-    if(!user){
+
+    if (!user) {
+        user.resetPasswordToken = undefined;
+        user.resetPasswordExpire = undefined;
+        await user.save({ validateBeforeSave: false })
         return next(new ErrorHandler("Ivalid token or has been expired"))
     }
 
-    if(password !== confirmPassword){
-        return next(new ErrorHandler("Entered password not matched!", 400));
+    if (password !== confirmPassword) {
+        return next(new ErrorHandler("password does not matched!", 400));
     }
 
     user.password = password;
     user.updatedAt = Date.now();
     user.resetPasswordToken = undefined;
     user.resetPasswordExpire = undefined;
-    await user.save({validateBeforeSave: false})
-    
+    await user.save({ validateBeforeSave: false })
+
+    sendToken(user, 200, res)
+
+    res.status(200).json({
+        success: true,
+        message: "Password successfully updated!"
+    })
+
 })
 
 module.exports = {
