@@ -17,16 +17,24 @@ const isAuthenticateUser = catchAsyncError(async (req, res, next) => {
 
 
 // user any specific roles then work any module
-const authorisedRoles = (...roles)=>{
+const authorisedRoles = (...roles) => {
 
-    return (req, res, next)=>{
-        if(!roles.includes(req.user.role)){
+    return (req, res, next) => {
+        if (!roles.includes(req.user.role)) {
             return next(new ErrorHandler(`Role : ${req.user.role} is not allowed to access this resourse!`, 401))
         }
-        
+
         next();
     }
 }
+
+
+// update password by usern using old password
+
+const updatePassword = catchAsyncError(async (req, res, next) => {
+    const {oldPassword, newPassword, confirmPassword} = req.body;
+    console.log(oldPassword, newPassword, confirmPassword)
+})
 
 
 

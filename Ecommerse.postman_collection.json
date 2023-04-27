@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "7d0d541d-dabd-4fdd-987f-4f79f629df6d",
+		"_postman_id": "f55a1777-651f-44b8-9e29-e651093772d9",
 		"name": "Ecommerse",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -164,20 +164,18 @@
 			"item": [
 				{
 					"name": "register",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"toran\",\r\n    \"email\" : \"dippu@gmail.com\",\r\n    \"password\" : \"dippudewanga\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": "{\r\n    \"name\" : \"dipendra\",\r\n    \"email\" : \"dewangandipendradewangan@gmail.com\",\r\n    \"password\" : \"dipendra\"\r\n}"
 						},
 						"url": {
-							"raw": "http://localhost:4000/api/v1/register",
+							"raw": "http://localhost:4000/api/v1/product/643800985ab008923bca46fb",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -186,7 +184,8 @@
 							"path": [
 								"api",
 								"v1",
-								"register"
+								"product",
+								"643800985ab008923bca46fb"
 							]
 						}
 					},
@@ -199,7 +198,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\" : \"d@gmail.com\",\r\n    \"password\" : \"\"\r\n}",
+							"raw": "{\r\n    \"email\" : \"dewangandipendradewangan@gmail.com\",\r\n    \"password\" : \"newPassword\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -250,7 +249,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\" : \"dipenda@gmail.com\"\r\n}",
+							"raw": "{\r\n    \"email\" : \"dewangandipendradewangan@gmail.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -279,8 +278,17 @@
 					"request": {
 						"method": "PUT",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\" : \"newPassword\",\r\n    \"confirmPassword\":\"newPassword\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:4000/api/v1/password/reset/e7fa287b2fca6ea0caf33f0e3d92d27c1f9062ba",
+							"raw": "http://localhost:4000/api/v1/password/reset/41a6be73d2d206109fe6c1584a9a99707178cd55",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -291,7 +299,28 @@
 								"v1",
 								"password",
 								"reset",
-								"e7fa287b2fca6ea0caf33f0e3d92d27c1f9062ba"
+								"41a6be73d2d206109fe6c1584a9a99707178cd55"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user details by logged user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/me",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"me"
 							]
 						}
 					},
