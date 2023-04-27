@@ -179,6 +179,14 @@ const updatePassword = catchAsyncError(async (req, res, next) => {
 })
 
 
+// update profile by logged user
+
+const updateProfile = catchAsyncError(async (req, res, next) => {
+    const user = await userSchema.findById(req.user._id)
+    console.log(user)
+})
+
+
 
 module.exports = {
     registerUser,
@@ -187,5 +195,6 @@ module.exports = {
     forgotPassword,
     resetPassword,
     getUserDetails,
-    updatePassword
+    updatePassword,
+    updateProfile
 }
