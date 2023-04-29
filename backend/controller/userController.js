@@ -156,7 +156,7 @@ const getUserDetails = catchAsyncError(async (req, res, next) => {
 
 
 
-// update password by usern using old password
+// update password by user using old password
 
 const updatePassword = catchAsyncError(async (req, res, next) => {
     const { oldPassword, newPassword, confirmPassword } = req.body;
@@ -182,10 +182,28 @@ const updatePassword = catchAsyncError(async (req, res, next) => {
 // update profile by logged user
 
 const updateProfile = catchAsyncError(async (req, res, next) => {
-    const user = await userSchema.findById(req.user._id)
-    console.log(user)
+    const newUserData = {
+        email: req.body.email,
+        name: req.body.name
+    }
+
+    await userSchema.findByIdAndUpdate(req.user._id, newUserData)
+
+    res.status(200).json({
+        success: true,
+        message: "Profile updated successfully!"
+    })
+
 })
 
+
+const getAllUsers = catchAsyncError(async (req, res, next)=>{
+    const allUsers = await userSchema.find();
+    res.status(200).json({
+        success : true,
+        allUsers
+    })
+})
 
 
 module.exports = {
