@@ -214,5 +214,6 @@ module.exports = {
     resetPassword,
     getUserDetails,
     updatePassword,
-    updateProfile
+    updateProfile,
+    getAllUsers
 }

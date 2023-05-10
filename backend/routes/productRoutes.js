@@ -4,10 +4,10 @@ const { isAuthenticateUser, authorisedRoles } = require("../middleware/auth");
 
 
 // route for get all products
-router.get("/products", getAllProducts)
+router.get("/products",isAuthenticateUser, getAllProducts)
 
 // route for get any product Details using product id
-router.get("/product/:id", getProductDetails)
+router.get("/product/:id",isAuthenticateUser, getProductDetails)
 
 // route for create a product
 router.post("/product/new", isAuthenticateUser, authorisedRoles("admin"), createProduct)

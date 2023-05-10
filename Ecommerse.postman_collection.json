@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "f55a1777-651f-44b8-9e29-e651093772d9",
+		"_postman_id": "b65999c6-f771-48ad-9b63-9d996b9cc054",
 		"name": "Ecommerse",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -164,18 +164,20 @@
 			"item": [
 				{
 					"name": "register",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"dipendra\",\r\n    \"email\" : \"dewangandipendradewangan@gmail.com\",\r\n    \"password\" : \"dipendra\"\r\n}"
+							"raw": "{\r\n    \"name\" : \"dipendra\",\r\n    \"email\" : \"dewangandipendradewangan@gmail.com\",\r\n    \"password\" : \"dipendra\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/api/v1/product/643800985ab008923bca46fb",
+							"raw": "http://localhost:4000/api/v1/register",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -184,8 +186,7 @@
 							"path": [
 								"api",
 								"v1",
-								"product",
-								"643800985ab008923bca46fb"
+								"register"
 							]
 						}
 					},

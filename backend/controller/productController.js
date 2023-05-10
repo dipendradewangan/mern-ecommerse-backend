@@ -11,7 +11,7 @@ const getAllProducts = catchAsyncError(async (req, res) => {
     // count total listing products
     const productCount = await ProductSchema.countDocuments();
 
-    const resultPerPage = 5
+    const resultPerPage = 10
     
     const apiFeacher = new ApiFeachers(ProductSchema.find(), req.query).search().filter().pagination(resultPerPage);
     
