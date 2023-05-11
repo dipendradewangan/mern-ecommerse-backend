@@ -9,7 +9,8 @@ const {
     getUserDetails,
     updatePassword,
     updateProfile,
-    getAllUsers
+    getAllUsers,
+    getSingleUser
 } = require("../controller/userController");
 
 const { isAuthenticateUser, authorisedRoles } = require("../middleware/auth")
@@ -38,8 +39,10 @@ router.put("/password/update", isAuthenticateUser, updatePassword);
 // route for update profile by logged user
 router.put("/me/update", isAuthenticateUser, updateProfile);
 
-
+// route for get all user in can see only admin
 router.get("/admin/users", isAuthenticateUser, authorisedRoles("admin"), getAllUsers)
 
+
+router.get("/admin/users/:id", isAuthenticateUser, authorisedRoles("admin"), getSingleUser)
 
 module.exports = router;

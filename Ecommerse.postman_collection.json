@@ -1,8 +1,10 @@
 {
 	"info": {
-		"_postman_id": "b65999c6-f771-48ad-9b63-9d996b9cc054",
+		"_postman_id": "014d87f5-6cd2-4e7d-a38a-9eafa3498140",
 		"name": "Ecommerse",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21019849",
+		"_collection_link": "https://solar-crater-487387.postman.co/workspace/Team-Workspace~e5a31e11-8ac3-4755-8f56-13ae7fc0c963/collection/21019849-014d87f5-6cd2-4e7d-a38a-9eafa3498140?action=share&creator=21019849&source=collection_link"
 	},
 	"item": [
 		{
@@ -324,6 +326,22 @@
 								"me"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "allUsers - admin",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "userInfo - admin",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}

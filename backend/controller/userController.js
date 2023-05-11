@@ -196,12 +196,22 @@ const updateProfile = catchAsyncError(async (req, res, next) => {
 
 })
 
-
-const getAllUsers = catchAsyncError(async (req, res, next)=>{
+// see all user
+const getAllUsers = catchAsyncError(async (req, res, next) => {
     const allUsers = await userSchema.find();
     res.status(200).json({
-        success : true,
+        success: true,
         allUsers
+    })
+})
+
+
+// see a single user
+const getSingleUser = catchAsyncError(async (req, res, next) => {
+    const userInfo = await userSchema.findById(req.params.id);
+    res.status(200).json({
+        success : true,
+        userInfo
     })
 })
 
@@ -215,5 +225,6 @@ module.exports = {
     getUserDetails,
     updatePassword,
     updateProfile,
-    getAllUsers
+    getAllUsers,
+    getSingleUser
 }
