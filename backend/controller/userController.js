@@ -209,9 +209,43 @@ const getAllUsers = catchAsyncError(async (req, res, next) => {
 // see a single user
 const getSingleUser = catchAsyncError(async (req, res, next) => {
     const userInfo = await userSchema.findById(req.params.id);
+
+    if (!userInfo) {
+        return next(new ErrorHandler("User not exist with this id!", 404))
+    }
+
+    res.status(200).json({
+        success: true,
+        userInfo
+    })
+})
+
+// update user role by admin
+const updateUserRole = catchAsyncError(async (req, res, next) => {
+    const newUserData = {
+        name : req.body.name,
+        email : req.body.email,
+        role : req.body.role
+    }
+
+    const user = await userSchema.findByIdAndUpdate(req.params.id, newUserData, {
+        new : true,
+        runValidators : true,
+        useFindAndModify : false
+    })
+
     res.status(200).json({
         success : true,
-        userInfo
+        message : "User role updated successfully"
+    })
+})
+
+// delete user by admin
+const deleteUser = catchAsyncError(async (req, res, next) => {
+    await userSchema.findByIdAndDelete(req.params.id);
+    res.status(200).json({
+        success : true,
+        message : "User deleted successfully"
     })
 })
 
@@ -226,5 +260,7 @@ module.exports = {
     updatePassword,
     updateProfile,
     getAllUsers,
-    getSingleUser
+    getSingleUser,
+    updateUserRole,
+    deleteUser
 }
