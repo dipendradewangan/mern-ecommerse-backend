@@ -12,9 +12,9 @@ const getAllProducts = catchAsyncError(async (req, res) => {
     const productCount = await ProductSchema.countDocuments();
 
     const resultPerPage = 10
-    
+
     const apiFeacher = new ApiFeachers(ProductSchema.find(), req.query).search().filter().pagination(resultPerPage);
-    
+
     const productCollection = await apiFeacher.query;
 
     res.status(200).json({
@@ -44,7 +44,7 @@ const getProductDetails = catchAsyncError(async (req, res, next) => {
 
 // controlles for fetch create a product
 const createProduct = catchAsyncError(async (req, res, next) => {
-    
+
 
     // insert details of product creater using logged user 
     req.body.createdBy = req.user._id
@@ -53,14 +53,14 @@ const createProduct = catchAsyncError(async (req, res, next) => {
 
 
     res.status(201).json({
-        success : true,
-        message : "Product successfully created!"
+        success: true,
+        message: "Product successfully created!"
     })
 
 })
 
 // controlles for fetch update a selected product
-const updateProduct =catchAsyncError( async (req, res) => {
+const updateProduct = catchAsyncError(async (req, res) => {
     const id = req.params.id;
     const product = await ProductSchema.findById(id)
 
@@ -97,10 +97,49 @@ const deleteProduct = catchAsyncError(async (req, res) => {
 
 })
 
+
+const createReviwe = catchAsyncError(async (req, res, next) => {
+    const { rating, comment, productId } = req.body;
+
+    const review = {
+        user: req.user._id,
+        name: req.user.name,
+        rating: Number(rating),
+        comment
+    }
+
+    const product = await ProductSchema.findById(productId);
+    if (!product) {
+        return next(new ErrorHandler("Product not found", 404))
+    }
+
+    const isReviewed = false;
+
+    if (isReviewed) {
+        console.log("product already reviewed!");
+    }
+    else {
+        product.reviews.push(review)
+        product.numberOfReviews = product.reviews.length;
+        let totalRatings = 0;
+        product.reviews.forEach((rev) => {
+            totalRatings = totalRatings = rev.rating;
+        });
+        product.rating = totalRatings / product.reviews.length;
+        console.log(product.rating)
+        const updatedReview = await product.save({
+            validateBeforeSave : false
+        }) 
+        console.log(updatedReview);
+    }
+
+})
+
 module.exports = {
     getAllProducts,
     getProductDetails,
     createProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    createReviwe
 }

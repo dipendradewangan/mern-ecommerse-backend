@@ -1,10 +1,9 @@
 {
 	"info": {
-		"_postman_id": "014d87f5-6cd2-4e7d-a38a-9eafa3498140",
+		"_postman_id": "e88ffa6f-bb63-4aa1-bc96-cb83aad1cf1a",
 		"name": "Ecommerse",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "21019849",
-		"_collection_link": "https://solar-crater-487387.postman.co/workspace/Team-Workspace~e5a31e11-8ac3-4755-8f56-13ae7fc0c963/collection/21019849-014d87f5-6cd2-4e7d-a38a-9eafa3498140?action=share&creator=21019849&source=collection_link"
+		"_exporter_id": "21019849"
 	},
 	"item": [
 		{
@@ -201,7 +200,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\" : \"dewangandipendradewangan@gmail.com\",\r\n    \"password\" : \"newPassword\"\r\n}",
+							"raw": "{\r\n    \"email\" : \"dewangandipendradewangan@gmail.com\",\r\n    \"password\" : \"dipendra\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -333,7 +332,10 @@
 					"name": "allUsers - admin",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": ""
+						}
 					},
 					"response": []
 				},
@@ -410,6 +412,36 @@
 								"admin",
 								"user",
 								"645d161b467f23a76c21d7c1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createProductReview",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rating\" : 5,\r\n    \"comment\" : \"nice one\",\r\n    \"productId\" : \"6437ff5422d1357834d61b2d\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/review",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"review"
 							]
 						}
 					},
