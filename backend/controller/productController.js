@@ -113,25 +113,49 @@ const createReviwe = catchAsyncError(async (req, res, next) => {
         return next(new ErrorHandler("Product not found", 404))
     }
 
-    const isReviewed = false;
+    const isReviewed = product.reviews.find((rev) => rev.user.toString() === req.user._id.toString())
+    console.log(isReviewed)
+
 
     if (isReviewed) {
         console.log("product already reviewed!");
+
+        // loop for all reviews iteration
+        product.reviews.forEach((rev) => {
+
+            // find exact reviewed user even he is already logged in
+            if (rev.user._id.toString() === req.user._id.toString()) {
+                console.log(rev)
+            }
+        })
+
     }
     else {
         product.reviews.push(review)
         product.numberOfReviews = product.reviews.length;
+
+        // calculation for rating updation 
         let totalRatings = 0;
         product.reviews.forEach((rev) => {
-            totalRatings = totalRatings = rev.rating;
+            totalRatings = totalRatings + rev.rating;
         });
         product.rating = totalRatings / product.reviews.length;
-        console.log(product.rating)
-        const updatedReview = await product.save({
-            validateBeforeSave : false
-        }) 
-        console.log(updatedReview);
+
+
+
+
     }
+
+    // command for update review
+    const updatedReview = await product.save({
+        validateBeforeSave: false
+    })
+
+    res.status(200).json({
+        success: true,
+        message: "successfully created reviews",
+        updatedReview
+    })
 
 })
 
