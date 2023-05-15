@@ -98,7 +98,7 @@ const deleteProduct = catchAsyncError(async (req, res) => {
 })
 
 
-const createReviwe = catchAsyncError(async (req, res, next) => {
+const createProductReview = catchAsyncError(async (req, res, next) => {
     const { rating, comment, productId } = req.body;
 
     const review = {
@@ -156,11 +156,42 @@ const createReviwe = catchAsyncError(async (req, res, next) => {
 
 })
 
+
+// route for get reviews of a product
+const getAllReviews = catchAsyncError(async (req, res, next)=>{
+    const product = await ProductSchema.findById(req.query.id);
+
+    if(!product){
+        return next(new ErrorHandler("Product not found!", 404));
+    }
+
+    res.status(200).json({
+        success : true,
+        ratings : product.rating,
+        reviews : product.reviews
+    })
+})
+
+
+// route for delete product review 
+const deleteProductReview = catchAsyncError(async (req, res, next)=>{
+    const product = await ProductSchema.findById(req.query.productId);
+
+    if(!product){
+        return next(new ErrorHandler("product not found!", 404));
+    }
+
+    console.log(product)
+    console.log(product.reviews.filter((rev)=>rev.user.toString() !== req.user._id.toString));
+
+})
 module.exports = {
     getAllProducts,
     getProductDetails,
     createProduct,
     updateProduct,
     deleteProduct,
-    createReviwe
+    createProductReview,
+    getAllReviews, 
+    deleteProductReview
 }
