@@ -124,27 +124,24 @@ const createReviwe = catchAsyncError(async (req, res, next) => {
         product.reviews.forEach((rev) => {
 
             // find exact reviewed user even he is already logged in
-            if (rev.user._id.toString() === req.user._id.toString()) {
-                console.log(rev)
+            if (rev.user.toString() === req.user._id.toString()) {
+                rev.rating = rating
+                rev.comment = comment
             }
         })
-
     }
+
     else {
         product.reviews.push(review)
         product.numberOfReviews = product.reviews.length;
-
-        // calculation for rating updation 
-        let totalRatings = 0;
-        product.reviews.forEach((rev) => {
-            totalRatings = totalRatings + rev.rating;
-        });
-        product.rating = totalRatings / product.reviews.length;
-
-
-
-
     }
+
+    // calculation for rating updation 
+    let totalRatings = 0;
+    product.reviews.forEach((rev) => {
+        totalRatings = totalRatings + rev.rating;
+    });
+    product.rating = totalRatings / product.reviews.length;
 
     // command for update review
     const updatedReview = await product.save({
