@@ -25,7 +25,7 @@ router.put("/review",isAuthenticateUser, createProductReview);
 router.get("/reviews/",getAllReviews)
 
 // routers for delete product review by logged user
-router.delete("/review", isAuthenticateUser, deleteProductReview);
+router.delete("/reviews", isAuthenticateUser, deleteProductReview);
 
 
 

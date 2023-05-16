@@ -181,10 +181,25 @@ const deleteProductReview = catchAsyncError(async (req, res, next)=>{
         return next(new ErrorHandler("product not found!", 404));
     }
 
-    console.log(product)
-    console.log(product.reviews.filter((rev)=>rev.user.toString() !== req.user._id.toString));
+    // console.log(product)
+    const reviews = product.reviews.filter((rev)=>rev.user.toString() !== req.user._id.toString());
+    console.log(reviews);
+
+
+    const deletedReviews = await ProductSchema.findByIdAndUpdate(req.query.productId, {reviews}, {
+        new : true,
+        runValidators : true,
+        useFindAndModify : false,
+    })
+
+    res.status(200).json({
+        success : true,
+        message : "successfully deleted review!"
+    })
 
 })
+
+
 module.exports = {
     getAllProducts,
     getProductDetails,
