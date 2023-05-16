@@ -118,7 +118,6 @@ const createProductReview = catchAsyncError(async (req, res, next) => {
 
 
     if (isReviewed) {
-        console.log("product already reviewed!");
 
         // loop for all reviews iteration
         product.reviews.forEach((rev) => {
@@ -158,43 +157,79 @@ const createProductReview = catchAsyncError(async (req, res, next) => {
 
 
 // route for get reviews of a product
-const getAllReviews = catchAsyncError(async (req, res, next)=>{
+const getAllReviews = catchAsyncError(async (req, res, next) => {
     const product = await ProductSchema.findById(req.query.id);
 
-    if(!product){
+    if (!product) {
         return next(new ErrorHandler("Product not found!", 404));
     }
 
     res.status(200).json({
-        success : true,
-        ratings : product.rating,
-        reviews : product.reviews
+        success: true,
+        ratings: product.rating,
+        numberOfReviews: product.numberOfReviews,
+        reviews: product.reviews
     })
 })
 
 
 // route for delete product review 
-const deleteProductReview = catchAsyncError(async (req, res, next)=>{
+const deleteProductReview = catchAsyncError(async (req, res, next) => {
     const product = await ProductSchema.findById(req.query.productId);
 
-    if(!product){
+    if (!product) {
         return next(new ErrorHandler("product not found!", 404));
     }
 
-    // console.log(product)
-    const reviews = product.reviews.filter((rev)=>rev.user.toString() !== req.user._id.toString());
-    console.log(reviews);
+    // check logged user review available or not
+    let reviews = ""
 
+    const reviewedUser = product.reviews.find((rev) => rev.user.toString() === req.user._id.toString())
+    console.log(reviewedUser);
+    // if (!reviewedUser) {
+    //     return next(new ErrorHandler("Not any review to delete", 404));
+    // }
 
-    const deletedReviews = await ProductSchema.findByIdAndUpdate(req.query.productId, {reviews}, {
-        new : true,
-        runValidators : true,
-        useFindAndModify : false,
+    reviews = product.reviews.filter((rev) => rev.user.toString() !== req.user._id.toString());
+
+    console.log(reviews)
+
+    // setting average ratings
+    let totalRatings = 0;
+    console.log("first total rating:", totalRatings)
+    product.reviews.forEach((rev) => {
+        totalRatings = totalRatings + rev.rating;
     })
 
+    console.log("second total rating:", totalRatings)
+
+    const numberOfReviews = reviews.length;
+    console.log(numberOfReviews)
+
+    let rating = 0;
+    if (reviews.length !== 0) {
+        rating = totalRatings / reviews.length;
+    }
+    console.log(rating)
+
+    const deletedReviews = await ProductSchema.findByIdAndUpdate(
+        req.query.productId,
+        {
+            reviews,
+            rating,
+            numberOfReviews
+        },
+        {
+            new: true,
+            runValidators: true,
+            useFindAndModify: false,
+        }
+    )
+
     res.status(200).json({
-        success : true,
-        message : "successfully deleted review!"
+        success: true,
+        message: "successfully deleted review!",
+        deletedReviews
     })
 
 })
@@ -207,6 +242,6 @@ module.exports = {
     updateProduct,
     deleteProduct,
     createProductReview,
-    getAllReviews, 
+    getAllReviews,
     deleteProductReview
 }
