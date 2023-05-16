@@ -114,7 +114,7 @@ const createProductReview = catchAsyncError(async (req, res, next) => {
     }
 
     const isReviewed = product.reviews.find((rev) => rev.user.toString() === req.user._id.toString())
-    console.log(isReviewed)
+
 
 
     if (isReviewed) {
@@ -185,32 +185,31 @@ const deleteProductReview = catchAsyncError(async (req, res, next) => {
     let reviews = ""
 
     const reviewedUser = product.reviews.find((rev) => rev.user.toString() === req.user._id.toString())
-    console.log(reviewedUser);
-    // if (!reviewedUser) {
-    //     return next(new ErrorHandler("Not any review to delete", 404));
-    // }
+
+    if (!reviewedUser) {
+        return next(new ErrorHandler("Not any review to delete", 404));
+    }
 
     reviews = product.reviews.filter((rev) => rev.user.toString() !== req.user._id.toString());
 
-    console.log(reviews)
+
 
     // setting average ratings
     let totalRatings = 0;
-    console.log("first total rating:", totalRatings)
-    product.reviews.forEach((rev) => {
-        totalRatings = totalRatings + rev.rating;
+    reviews.forEach((rev) => {
+
+        totalRatings = totalRatings + rev.rating
     })
 
-    console.log("second total rating:", totalRatings)
+
 
     const numberOfReviews = reviews.length;
-    console.log(numberOfReviews)
+
 
     let rating = 0;
     if (reviews.length !== 0) {
-        rating = totalRatings / reviews.length;
+        rating = total / reviews.length;
     }
-    console.log(rating)
 
     const deletedReviews = await ProductSchema.findByIdAndUpdate(
         req.query.productId,
