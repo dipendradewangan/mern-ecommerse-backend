@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "e88ffa6f-bb63-4aa1-bc96-cb83aad1cf1a",
+		"_postman_id": "b505c37e-750a-4691-8554-77ee94b6c095",
 		"name": "Ecommerse",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "21019849"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -27,7 +26,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/api/v1/products?page=2",
+							"raw": "http://localhost:4000/api/v1/products",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -41,7 +40,8 @@
 							"query": [
 								{
 									"key": "page",
-									"value": "2"
+									"value": "2",
+									"disabled": true
 								}
 							]
 						}
@@ -170,7 +170,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"dipendra\",\r\n    \"email\" : \"dewangandipendradewangan@gmail.com\",\r\n    \"password\" : \"dipendra\"\r\n}",
+							"raw": "{\r\n    \"name\" : \"abhishek\",\r\n    \"email\" : \"abhishek@gmail.com\",\r\n    \"password\" : \"dipendra\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -200,7 +200,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\" : \"dewangandipendradewangan@gmail.com\",\r\n    \"password\" : \"dipendra\"\r\n}",
+							"raw": "{\r\n    \"email\" : \"dipendra@gmail.com\",\r\n    \"password\" : \"dipendra\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -306,6 +306,33 @@
 						}
 					},
 					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "allUsers - admin",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/admin/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"users"
+							]
+						}
+					},
+					"response": []
 				},
 				{
 					"name": "user details by logged user",
@@ -324,17 +351,6 @@
 								"v1",
 								"me"
 							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "allUsers - admin",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": ""
 						}
 					},
 					"response": []
@@ -424,7 +440,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"rating\" : 5,\r\n    \"comment\" : \"nice one\",\r\n    \"productId\" : \"6437ff5422d1357834d61b2d\"\r\n}",
+							"raw": "{\r\n    \"rating\" : 4,\r\n    \"comment\" : \"reviewed by abhishek\",\r\n    \"productId\" : \"6437ff5422d1357834d61b2d\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -442,6 +458,65 @@
 								"api",
 								"v1",
 								"review"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all reviews",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/reviews?id=6437ff5422d1357834d61b2d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"reviews"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "6437ff5422d1357834d61b2d"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete review by logged user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/reviews?productId=6437ff5422d1357834d61b2d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"reviews"
+							],
+							"query": [
+								{
+									"key": "productId",
+									"value": "6437ff5422d1357834d61b2d"
+								},
+								{
+									"key": "reviewId",
+									"value": "6461f4abe64837add627ae26",
+									"disabled": true
+								}
 							]
 						}
 					},
