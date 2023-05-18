@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b505c37e-750a-4691-8554-77ee94b6c095",
+		"_postman_id": "9bce1c9a-d0a5-4843-bec5-bc0e9faf82b6",
 		"name": "Ecommerse",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -519,6 +519,58 @@
 								}
 							]
 						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "order",
+			"item": [
+				{
+					"name": "new order by logged user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"shippingInfo\": {\r\n        \"name\": \"dipendra dewangan\",\r\n        \"address\": \"near navin primary school, vill koliyari\",\r\n        \"city\": \"dhamtari\",\r\n        \"dist\": \"dhamtari\",\r\n        \"state\": \"chhattisgarh\",\r\n        \"country\": \"India\",\r\n        \"pincode\": \"493773\",\r\n        \"phoneNum\": 8839434592\r\n    },\r\n    \"orderInfo\": [\r\n        {\r\n            \"productId\": \"6437ff5422d1357834d61b2d\",\r\n            \"productName\": \"mackbook air 2020\",\r\n            \"price\": 1000,\r\n            \"quantity\": 1,\r\n            \"image\": \"sample url\"\r\n        }\r\n    ],\r\n    \"user\": \"64634cf8a22cf2643e432a3b\",\r\n    \"paymentInfo\": {\r\n        \"id\": \"sample paymentInfoId\",\r\n        \"status\": \"succeeded\"\r\n    },\r\n    \"paidAt\": \"\",\r\n    \"itemsPrice\": 1000,\r\n    \"taxPrice\": 180,\r\n    \"shippingPrice\": 40,\r\n    \"totalPrice\": 1280\r\n    // \"deleveredAt\": ,\r\n    // \"createdAt\": {}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/order/new",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"order",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "see all orders : logged user",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "allOrders",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}
