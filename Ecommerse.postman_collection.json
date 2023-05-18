@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "9bce1c9a-d0a5-4843-bec5-bc0e9faf82b6",
+		"_postman_id": "2b64a720-5f8e-47a4-8756-f28634dd8b8f",
 		"name": "Ecommerse",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21019849"
 	},
 	"item": [
 		{
@@ -534,7 +535,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"shippingInfo\": {\r\n        \"name\": \"dipendra dewangan\",\r\n        \"address\": \"near navin primary school, vill koliyari\",\r\n        \"city\": \"dhamtari\",\r\n        \"dist\": \"dhamtari\",\r\n        \"state\": \"chhattisgarh\",\r\n        \"country\": \"India\",\r\n        \"pincode\": \"493773\",\r\n        \"phoneNum\": 8839434592\r\n    },\r\n    \"orderInfo\": [\r\n        {\r\n            \"productId\": \"6437ff5422d1357834d61b2d\",\r\n            \"productName\": \"mackbook air 2020\",\r\n            \"price\": 1000,\r\n            \"quantity\": 1,\r\n            \"image\": \"sample url\"\r\n        }\r\n    ],\r\n    \"user\": \"64634cf8a22cf2643e432a3b\",\r\n    \"paymentInfo\": {\r\n        \"id\": \"sample paymentInfoId\",\r\n        \"status\": \"succeeded\"\r\n    },\r\n    \"paidAt\": \"\",\r\n    \"itemsPrice\": 1000,\r\n    \"taxPrice\": 180,\r\n    \"shippingPrice\": 40,\r\n    \"totalPrice\": 1280\r\n    // \"deleveredAt\": ,\r\n    // \"createdAt\": {}\r\n}",
+							"raw": "{\r\n    \"shippingInfo\": {\r\n        \"name\": \"dipendra kumar dewangan\",\r\n        \"address\": \"vill : dondardulla\",\r\n        \"city\": \"nagri\",\r\n        \"dist\": \"dhamtari\",\r\n        \"state\": \"chhattisgarh\",\r\n        \"country\": \"India\",\r\n        \"pincode\": \"493773\",\r\n        \"phoneNum\": 8839434592\r\n    },\r\n    \"orderItems\": [\r\n        {\r\n            \"productId\": \"643800985ab008923bca46fb\",\r\n            \"productName\": \"poco x3\",\r\n            \"price\": 1000,\r\n            \"quantity\": 2,\r\n            \"image\": \"sample url\"\r\n        }\r\n    ],\r\n    \"paymentInfo\": {\r\n        \"id\": \"sample paymentInfoId\",\r\n        \"status\": \"succeeded\"\r\n    },\r\n    \"paidAt\": \"\",\r\n    \"itemsPrice\": 1000,\r\n    \"taxPrice\": 180,\r\n    \"shippingPrice\": 40,\r\n    \"totalPrice\": 1280\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -562,15 +563,117 @@
 					"name": "see all orders : logged user",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/orders/me",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"orders",
+								"me"
+							]
+						}
 					},
 					"response": []
 				},
 				{
-					"name": "allOrders",
+					"name": "allOrders : admin",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/allordres",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"allordres"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getOrderInfo : admin",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/order/6465e9236b7b4c7b8ed344a4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"order",
+								"6465e9236b7b4c7b8ed344a4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update order : admin",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\" : \"shipped\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/order/64666792e04a835faf7f6796",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"order",
+								"64666792e04a835faf7f6796"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete order : admin",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/order/6466638aa0f5f5c25f5864ee",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"order",
+								"6466638aa0f5f5c25f5864ee"
+							]
+						}
 					},
 					"response": []
 				}

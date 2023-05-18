@@ -36,7 +36,7 @@ const orderSchema = new mongoose.Schema({
             required: true
         },
     },
-    orderInfo: [
+    orderItems: [
         {
             productId: {
                 type: mongoose.Schema.ObjectId,
@@ -104,7 +104,7 @@ const orderSchema = new mongoose.Schema({
         default : "processing",
         required : true
     },
-    deleveredAt : Date,
+    deliveredAt : Date,
     createdAt : {
         type : Date,
         default : Date.now,
