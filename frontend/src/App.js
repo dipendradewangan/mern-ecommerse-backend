@@ -1,11 +1,14 @@
-
+import Header from "./component/layout/Header.js"
 import './App.css';
+import { BrowserRouter } from 'react-router-dom'
+import {ReactNavbar} from 'overlay-navbar'
 
 function App() {
   return (
-    <div className="App">
+    <BrowserRouter>
+      <ReactNavbar/>
 
-    </div>
+    </BrowserRouter>
   );
 }
 
