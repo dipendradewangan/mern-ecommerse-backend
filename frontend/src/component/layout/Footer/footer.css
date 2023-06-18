@@ -1,0 +1,42 @@
+.footer{
+    margin-top: 10vmax;
+    padding: 2vmax;
+    color: white;
+    display: flex;
+
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: rgb(34, 33, 34);
+}
+
+.leftFooter{
+    width: 20%;
+    padding: 1vmax;
+}
+
+
+.leftFooter>h4{
+    margin: 0;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.leftFooter>p{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.leftFooter>img{
+    width: 10vmax;
+    margin-bottom: 2vmax;
+    cursor:  pointer;
+}
+
+.midFooter{
+    width: 20%;
+}
+.rightFooter{
+    width: 20%;
+    padding: 2vmax;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    flex-direction: column;
+}
