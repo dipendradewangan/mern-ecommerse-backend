@@ -12,15 +12,15 @@ const Footer = () => {
                 <img src={appstore} alt='playstore'/>
             </div>
             <div className='midFooter'>
-                <h1>ECOMMERSE.COM</h1>
-                <h5>Follow us</h5>
+                <h1>ECOMMERSE</h1>
                 <p>High quality is our first priority</p>
             </div>
             <div className='rightFooter'>
-                <a href='/'>instagram</a>
-                <a href='/'>facebook</a>
-                <a href='/'>gmail</a>
-                <a href='/'>linkedin</a>
+                <h4>Follow us</h4>
+                <a href='/'>Instagram</a>
+                <a href='/'>Facebook</a>
+                <a href='/'>Gmail</a>
+                <a href='/'>Linkedin</a>
             </div>
         </div>
     )

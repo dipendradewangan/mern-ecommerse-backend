@@ -1,42 +1,72 @@
-.footer{
-    margin-top: 10vmax;
-    padding: 2vmax;
-    color: white;
-    display: flex;
+*{
+    margin: 0;
+    padding: 0;
+    /* box-sizing: border-box; */
+}
 
-    align-items: center;
-    justify-content: space-evenly;
-    background-color: rgb(34, 33, 34);
+.footer{
+    margin-top: 10%;
+    display: flex;
+    background-color: rgb(35,35,34);
+    justify-content: space-between;
+    color: white;
+    padding: 2vmax;
 }
 
 .leftFooter{
-    width: 20%;
+    width: 30%;
     padding: 1vmax;
+    display: flex;
+    flex-direction: column;
+    font-size: 1vmax;
+    gap: 1vmax;
+    padding: 2vmax;
+
 }
 
-
-.leftFooter>h4{
+.leftFooter > h2{
     margin: 0;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-
-.leftFooter>p{
+    padding: 0vmax;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-.leftFooter>img{
-    width: 10vmax;
-    margin-bottom: 2vmax;
-    cursor:  pointer;
+    font-size: 2vmax;
 }
 
-.midFooter{
-    width: 20%;
+.leftFooter>img{
+    width: 15vw;
+
 }
+.midFooter{
+    width: 30%;
+    /* padding: 1vmax; */
+    font-size: 2vmax;
+    padding: 2vmax;
+    text-align: center;
+}
+
+.midFooter>h1{
+    font-size: 3vmax;
+    font-family: Roboto, sans-serif;
+    margin-bottom: 1vmax;
+}
+
+
 .rightFooter{
-    width: 20%;
+    width: 30%;
     padding: 2vmax;
     display: flex;
-    justify-content: center;
-    /* align-items: center; */
     flex-direction: column;
+
+}
+
+.rightFooter>h4{
+    margin-bottom: 1vmax;
+    text-align: center;
+}
+
+.rightFooter>a{
+    margin-left: 10vmax;
+    color: white;
+    text-decoration: none;
+   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+   font-size: 1.5vmax;
 }
