@@ -5,7 +5,7 @@ const Header = () => {
     return (
         <div>
             <ReactNavbar
-                burgerColor="red"	                                        //'This is to change the color of burger menu button'
+                burgerColor="white"	                                        //'This is to change the color of burger menu button'
                 burgerColorHover="blue"	                                    //"This is to change the color of burger menu button at the of hover "
                 // navColor1="rgb(35, 35, 35)"	                            //"This is to set the color of first nav section
                 // navColor2="navColor1"	                                //"This is to set the color of second nav section
