@@ -1,0 +1,91 @@
+
+.productCard{
+    /* padding: 1vmax; */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 1vmax;
+    max-width: 18vmax;
+    text-decoration: none;
+    /* padding: 1vmax; */
+    box-shadow: 1px 2px 20px rgba(0,0,0,0.1);
+    
+}
+
+.productCard>.productDP{
+    width: 100%;
+}
+
+.productInfo{
+    padding: 1vmax;
+}
+
+.productInfo>.productName{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 0.5vmax;
+}
+
+.productInfo>.productDescription{
+    margin-bottom: 0.5vmax;
+    color: gray;
+}
+
+.productInfo>.productPrice{
+    color: black;
+    font-weight: 600;
+    font-size: 1vmax;
+    margin-bottom: 1vmax;
+}
+
+.productInfo>.ratingContainer{
+    display: flex;
+    gap: 1vmin;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: gray;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+
+
+@media screen and (max-width : 800px) {
+    
+    .productInfo>.ratingContainer{
+        font-size: 1vmax;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media screen and (max-width : 600px) {
+    .productCard{
+        max-width: 25vmax;
+    }
+    .productInfo>.productName{
+        font-size: 1.5vmax;
+    }
+    .productInfo>.productDescription{
+        font-size: 1.5vmax;
+    }
+    .productInfo>.productPrice{
+        font-size: 1.5vmax;
+    }
+    .productInfo>.ratingContainer{
+        font-size: 1.5vmax;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+
+@media screen and (max-width : 400px) {
+    .productCard{
+        max-width: 20vmax;
+    }
+    .productInfo>.ratingContainer{
+        font-size: 1.5vmax;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

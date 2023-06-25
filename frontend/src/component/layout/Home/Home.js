@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import './Home.css'
 import { CgMouse } from 'react-icons/cg'
-import Product from './Product.js'
+import ProductCard from './ProductCard.js'
 
 
 const product = {
@@ -24,14 +24,14 @@ const Home = () => {
         </div>
         <p className='productTitle' id='productTitle'>Feachered Products</p>
         <div className='productContainer'>
-            <Product product={product} />
-            <Product product={product} />
-            <Product product={product} />
-            <Product product={product} />
-            <Product product={product} />
-            <Product product={product} />
-            <Product product={product} />
-            <Product product={product} />
+            <ProductCard product={product} />
+            <ProductCard product={product} />
+            <ProductCard product={product} />
+            <ProductCard product={product} />
+            <ProductCard product={product} />
+            <ProductCard product={product} />
+            <ProductCard product={product} />
+            <ProductCard product={product} />
         </div>
     </Fragment>
 

@@ -1,9 +1,17 @@
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import ReactStars from 'react-rating-stars-component'
+import './ProductCard.css'
 
-function Product({ product }) {
+const ratingOption = {
+    // size : '1vmax',
+    isHalf : true,
+    value : 3.5,
+    activeColor : 'red'
+}
+function ProductCard({ product }) {
     return (
+
         <Fragment>
             <Link className='productCard' to="/">
 
@@ -21,7 +29,7 @@ function Product({ product }) {
                     </p>
                     <p className='productPrice'>₹{product.price}</p>
                     <div className='ratingContainer'>
-                        <ReactStars /> <span className='reviewCount'>(200 ratings)</span>
+                        <ReactStars {...ratingOption} /> <span className='reviewCount'>(200 reviews)</span>
 
                     </div>
                 </div>
@@ -31,4 +39,4 @@ function Product({ product }) {
     )
 }
 
-export default Product
+export default ProductCard
