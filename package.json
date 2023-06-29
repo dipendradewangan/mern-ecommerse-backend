@@ -9,8 +9,7 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.3",
     "nodemailer": "^6.9.1",
-    "validator": "^13.9.0",
-    "webfontloader": "^1.6.28"
+    "validator": "^13.9.0"
   },
   "name": "ecommerse",
   "version": "1.0.0",
