@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import './Home.css'
 import { CgMouse } from 'react-icons/cg'
 import ProductCard from './ProductCard.js'
+import MetaData from '../MetaData'
 
 
 const product = {
@@ -14,6 +15,7 @@ const product = {
 
 const Home = () => {
     return <Fragment>
+        <MetaData title={'Home'}/>
         <div className='banner'>
 
             <h3>WELCOME TO SHOPCART</h3>
